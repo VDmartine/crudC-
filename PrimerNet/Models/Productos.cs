@@ -4,7 +4,7 @@
     {
         public int idProducto { get; set; }
         public string Nombre { get; set; }
-        public double Cosoto { get; set; }
+        public double Costo { get; set; }
         public int Categoria { get; set; }
         public int SubCategorias { get; set;}
         public int idVendedor { get; set;}

@@ -34,6 +34,7 @@ namespace PrimerNet.Controllers
                         {
                             idProducto = Convert.ToInt32(dr["idProducto"]),
                             Nombre = dr["nombre"].ToString(),
+                            Costo= float.Parse(dr["costo"].ToString()),
                             Categoria = Convert.ToInt32(dr["categoria"]),
                             SubCategorias = Convert.ToInt32(dr["subcategoria"]),
                             idVendedor = Convert.ToInt32(dr["idVendedor"]),

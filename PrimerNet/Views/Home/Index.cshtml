@@ -2,7 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 @section Estilos{
-    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet"/>
 }
 <div class="card-group">
     <div class="card">
@@ -12,7 +13,7 @@
             <table id="tb_productos" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>idproducto</th>
+                        <th>idProducto</th>
                         <th>nombre</th>
                         <th>costo</th>
                         <th>categoria</th>
@@ -51,6 +52,12 @@
 
 @section Scripts{
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
     <script>
         $('#tb_productos').DataTable({
@@ -60,13 +67,57 @@
                 "datatype":"json"
             },
             "columns":[
-                { "data": "idPoductos" },
+                { "data": "idProducto" },
                 { "data": "nombre" },
                 { "data": "costo" },
                 { "data": "categoria" },
-                { "data": "subcategoria" },
-                { "data": "idVendedor" }
+                { "data": "subCategorias" },
+                { "data": "idVendedor" },
+                { "data": "calificacion" },
+                { "data": "unidades" },
+                { "data": "imagen" },
+                { "data": "descripcion" }
+            ],
+            "language": {
+                url:"https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json"
+            },
+            columnDefs:[
+                {
+                    targets:0,
+                    visible:false
+                }
+            ],
+            dom:"Bfrtip",
+            buttons:[
+                {
+                    extend: "excelHtml5",
+                    text: "Exportar excel",
+                    filename: "Reporte Productos",
+                    title: "",
+                    exportOptions: {
+                        columns:[1, 2, 3, 4, 5, 6, 7]
+                    }
+                },
+                {
+                    extend: "pdfHtml5",
+                    text: "Exportar Pdf",
+                    filename: "Reporte Productos",
+                    title: "",
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7,9]
+                    }
+                },
+                {
+                    extend: "print",
+                    title: "",
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                    }
+                },
+                "pageLength"
+
             ]
+            
         });
         
     </script>
